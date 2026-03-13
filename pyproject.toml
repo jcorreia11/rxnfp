@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=36.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rxnfp"
+version = "0.1.0"
+description = "chemical reaction fingerprints"
+readme = "README.md"
+license = { text = "MIT License" }
+authors = [{ name = "Philippe Schwaller", email = "phs@zurich.ibm.com" }]
+keywords = ["chemical", "reactions", "fingerprints", "classification"]
+requires-python = ">=3.10"
+dependencies = [
+    "transformers>=4.5.0",
+    "torch>=1.6",
+    "scipy>=1.7.0",
+    "scikit-learn>=1.0",
+    "matplotlib>=3.5.0",
+    "faerun>=0.3.20",
+    "tmap>=1.2.1",
+    "rdkit>=2025.9.6",
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.urls]
+Homepage = "https://github.com/rxn4chemistry/rxnfp/tree/master/"
+Documentation = "https://rxn4chemistry.github.io/rxnfp/"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["rxnfp*"]

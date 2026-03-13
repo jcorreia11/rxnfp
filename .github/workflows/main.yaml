@@ -4,18 +4,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - name: Setup conda
       uses: s-weigand/setup-conda@v1
       with:
         update-conda: true
-        python-version: 3.6
-        conda-channels: anaconda, tmap, rdkit
+        python-version: "3.10"
+        conda-channels: anaconda, tmap, conda-forge
     - run: conda --version
     - run: which python
     - name: Install the library
       run: |
-        conda install -c rdkit rdkit=2020.03.3.0 -y
+        conda install -c conda-forge rdkit -y
         conda install -c tmap tmap -y
         pip install nbdev jupyter
         pip install -e .
