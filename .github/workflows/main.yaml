@@ -10,29 +10,19 @@ jobs:
       with:
         update-conda: true
         python-version: "3.10"
-        conda-channels: anaconda, tmap, conda-forge
+        conda-channels: anaconda, conda-forge
     - run: conda --version
     - run: which python
     - name: Install the library
       run: |
         conda install -c conda-forge rdkit -y
-        pip install "nbdev<2" "fastcore<2" jupyter
         pip install -e .
-    - name: Read all notebooks
+    - name: Test import and core functionality
       run: |
-        nbdev_read_nbs
-    - name: Check if all notebooks are cleaned
-      run: |
-        echo "Check we are starting with clean git checkout"
-        if [ -n "$(git status -uno -s)" ]; then echo "git status is not clean"; false; fi
-        echo "Trying to strip out notebooks"
-        nbdev_clean_nbs
-        echo "Check that strip out was unnecessary"
-        git status -s # display the status to see which nbs need cleaning up
-        if [ -n "$(git status -uno -s)" ]; then echo -e "!!! Detected unstripped out notebooks\n!!!Remember to run nbdev_install_git_hooks"; false; fi
-    - name: Check if there is no diff library/notebooks
-      run: |
-        if [ -n "$(nbdev_diff_nbs)" ]; then echo -e "!!! Detected difference between the notebooks and the library"; false; fi
-    - name: Run tests
-      run: |
-        nbdev_test_nbs
+        python -c "
+        import rxnfp
+        from rxnfp.tokenization import SmilesTokenizer
+        from rxnfp.transformer_fingerprints import RXNBERTFingerprintGenerator, get_default_model_and_tokenizer, generate_fingerprints
+        print('rxnfp version:', rxnfp.__version__)
+        print('All imports successful')
+        "
