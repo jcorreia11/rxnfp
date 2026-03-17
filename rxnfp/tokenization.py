@@ -11,7 +11,7 @@ import re
 import numpy as np
 from rdkit import Chem
 
-import pkg_resources
+from importlib.resources import files
 
 from typing import List
 
@@ -22,10 +22,7 @@ SMI_REGEX_PATTERN =  r"(\%\([0-9]{3}\)|\[[^\]]+]|Br?|Cl?|N|O|S|P|F|I|b|c|n|o|s|p
 
 def get_default_tokenizer():
     default_vocab_path = (
-        pkg_resources.resource_filename(
-                    "rxnfp",
-                    "models/transformers/bert_ft_10k_25s/vocab.txt"
-                )
+        str(files("rxnfp").joinpath("models/transformers/bert_ft_10k_25s/vocab.txt"))
     )
     return SmilesTokenizer(default_vocab_path, do_lower_case=False)
 

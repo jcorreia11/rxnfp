@@ -12,7 +12,6 @@ import torch
 import logging
 import random
 import warnings
-import pkg_resources
 import sklearn
 
 from transformers import (
