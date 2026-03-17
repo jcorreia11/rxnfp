@@ -16,6 +16,7 @@ jobs:
     - name: Install the library
       run: |
         conda install -c conda-forge rdkit -y
+        pip install setuptools
         pip install -e .
     - name: Test import and core functionality
       run: |
