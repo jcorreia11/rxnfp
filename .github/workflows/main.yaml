@@ -16,7 +16,7 @@ jobs:
     - name: Install the library
       run: |
         conda install -c conda-forge rdkit -y
-        pip install nbdev jupyter
+        pip install "nbdev<2" jupyter
         pip install -e .
     - name: Read all notebooks
       run: |
