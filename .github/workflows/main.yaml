@@ -16,7 +16,6 @@ jobs:
     - name: Install the library
       run: |
         conda install -c conda-forge rdkit -y
-        conda install -c tmap tmap -y
         pip install nbdev jupyter
         pip install -e .
     - name: Read all notebooks
